@@ -1,0 +1,10 @@
+name = "whoami-worker"
+main = "src/index.js"
+compatibility_date = "2024-04-08"
+routes = [
+  { pattern = "tunnel.fl4re.com/whoami*", zone_name = "fl4re.com" }
+]
+
+[[r2_buckets]]
+binding = "R2_BUCKET"
+bucket_name = "fl4re-iso-flags"
