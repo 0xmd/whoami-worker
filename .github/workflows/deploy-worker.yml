@@ -13,19 +13,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4.x
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4.x
+        uses: actions/setup-node@v4
         with:
-          node-version: '22.x'
+          node-version: '18'
 
       - name: Install Dependencies
         working-directory: worker
         run: npm install
 
       - name: Deploy Worker
-        uses: cloudflare/wrangler-action@latest
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.WORKER_DEPLOY_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
