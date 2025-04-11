@@ -1,0 +1,32 @@
+name: Deploy Cloudflare Worker
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'worker/**'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4.x
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.x
+        with:
+          node-version: '22.x'
+
+      - name: Install Dependencies
+        working-directory: worker
+        run: npm install
+
+      - name: Deploy Worker
+        uses: cloudflare/wrangler-action@latest
+        with:
+          apiToken: ${{ secrets.WORKER_DEPLOY_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          workingDirectory: 'worker'
