@@ -24,7 +24,6 @@ jobs:
           node-version: '18'
 
       - name: Install Dependencies
-        working-directory: worker
         run: npm install
 
       - name: Deploy Worker
