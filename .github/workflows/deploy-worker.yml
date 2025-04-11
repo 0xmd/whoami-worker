@@ -5,7 +5,10 @@ on:
     branches:
       - main
     paths:
-      - 'worker/**'
+      - 'wrangler.toml'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'src/**'
   workflow_dispatch:
 
 jobs:
@@ -29,4 +32,3 @@ jobs:
         with:
           apiToken: ${{ secrets.WORKER_DEPLOY_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          workingDirectory: 'worker'
